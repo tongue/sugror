@@ -1,7 +1,6 @@
 export interface DeviceState {
   motor: 'on' | 'off';
   led: 'on' | 'off';
-  ledBrightness: number;
   connected: boolean;
 }
 
@@ -11,7 +10,6 @@ export interface MotorControlRequest {
 
 export interface LedControlRequest {
   state: 'on' | 'off';
-  brightness?: number;
 }
 
 export interface ApiResponse<T = any> {

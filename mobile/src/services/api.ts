@@ -58,14 +58,11 @@ class ApiService {
   }
 
   /**
-   * Control LED on/off and brightness
+   * Control LED on/off
    */
-  async controlLed(state: 'on' | 'off', brightness?: number): Promise<void> {
+  async controlLed(state: 'on' | 'off'): Promise<void> {
     try {
       const body: LedControlRequest = { state };
-      if (brightness !== undefined) {
-        body.brightness = brightness;
-      }
 
       const response = await fetch(`${this.baseUrl}/api/led`, {
         method: 'POST',

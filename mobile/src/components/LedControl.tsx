@@ -1,37 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
   ActivityIndicator,
-  Slider,
 } from 'react-native';
 
 interface LedControlProps {
   ledState: 'on' | 'off';
-  ledBrightness: number;
   onToggle: (state: 'on' | 'off') => void;
-  onBrightnessChange: (brightness: number) => void;
   disabled?: boolean;
   loading?: boolean;
 }
 
 const LedControl: React.FC<LedControlProps> = ({
   ledState,
-  ledBrightness,
   onToggle,
-  onBrightnessChange,
   disabled = false,
   loading = false,
 }) => {
-  const [sliderValue, setSliderValue] = useState(ledBrightness);
-
-  const handleBrightnessComplete = (value: number) => {
-    const brightness = Math.round(value);
-    onBrightnessChange(brightness);
-  };
-
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -77,24 +65,6 @@ const LedControl: React.FC<LedControlProps> = ({
             OFF
           </Text>
         </TouchableOpacity>
-      </View>
-
-      <View style={styles.brightnessContainer}>
-        <Text style={styles.brightnessLabel}>
-          Brightness: {Math.round(sliderValue)}
-        </Text>
-        <Slider
-          style={styles.slider}
-          minimumValue={0}
-          maximumValue={255}
-          value={sliderValue}
-          onValueChange={setSliderValue}
-          onSlidingComplete={handleBrightnessComplete}
-          minimumTrackTintColor="#FF9800"
-          maximumTrackTintColor="#ddd"
-          thumbTintColor="#FF9800"
-          disabled={disabled || loading}
-        />
       </View>
     </View>
   );
@@ -174,18 +144,6 @@ const styles = StyleSheet.create({
   },
   buttonTextActive: {
     color: '#fff',
-  },
-  brightnessContainer: {
-    marginTop: 8,
-  },
-  brightnessLabel: {
-    fontSize: 14,
-    color: '#666',
-    marginBottom: 8,
-  },
-  slider: {
-    width: '100%',
-    height: 40,
   },
 });
 

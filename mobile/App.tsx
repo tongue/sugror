@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { StatusBar } from 'expo-status-bar';
 import {
   SafeAreaView,
   ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
   View,
   Alert,
+  Platform,
 } from 'react-native';
-import StatusIndicator from './components/StatusIndicator';
-import MotorControl from './components/MotorControl';
-import LedControl from './components/LedControl';
-import ApiService from './services/api';
-import { DeviceState } from './types';
+import StatusIndicator from './src/components/StatusIndicator';
+import MotorControl from './src/components/MotorControl';
+import LedControl from './src/components/LedControl';
+import ApiService from './src/services/api';
+import { DeviceState } from './src/types';
 
-function App(): React.JSX.Element {
+export default function App() {
   const [deviceState, setDeviceState] = useState<DeviceState>({
     motor: 'off',
     led: 'off',
-    ledBrightness: 0,
     connected: false,
   });
   const [loading, setLoading] = useState<{ motor: boolean; led: boolean }>({
@@ -79,22 +79,10 @@ function App(): React.JSX.Element {
     }
   };
 
-  const handleBrightnessChange = async (brightness: number) => {
-    setLoading(prev => ({ ...prev, led: true }));
-    try {
-      await ApiService.controlLed(brightness > 0 ? 'on' : 'off', brightness);
-      // State will be updated via WebSocket
-    } catch (error) {
-      console.error('Error changing brightness:', error);
-      Alert.alert('Error', 'Failed to change brightness. Please check connection.');
-    } finally {
-      setLoading(prev => ({ ...prev, led: false }));
-    }
-  };
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
+      <StatusBar style="dark" />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={styles.scrollView}
@@ -116,9 +104,7 @@ function App(): React.JSX.Element {
 
         <LedControl
           ledState={deviceState.led}
-          ledBrightness={deviceState.ledBrightness}
           onToggle={handleLedToggle}
-          onBrightnessChange={handleBrightnessChange}
           disabled={!deviceState.connected}
           loading={loading.led}
         />
@@ -155,6 +141,3 @@ const styles = StyleSheet.create({
     color: '#666',
   },
 });
-
-export default App;
-
