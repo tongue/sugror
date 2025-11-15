@@ -12,6 +12,7 @@ import {
 import StatusIndicator from './src/components/StatusIndicator';
 import MotorControl from './src/components/MotorControl';
 import LedControl from './src/components/LedControl';
+import VoiceControl from './src/components/VoiceControl';
 import ApiService from './src/services/api';
 import { DeviceState } from './src/types';
 
@@ -94,6 +95,12 @@ export default function App() {
         </View>
 
         <StatusIndicator connected={deviceState.connected} />
+
+        <VoiceControl
+          onMotorToggle={handleMotorToggle}
+          disabled={!deviceState.connected}
+          loading={loading.motor}
+        />
 
         <MotorControl
           motorState={deviceState.motor}

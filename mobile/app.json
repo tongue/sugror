@@ -14,7 +14,10 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.arduinocontroller.app"
+      "bundleIdentifier": "com.arduinocontroller.app",
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "This app requires microphone access for voice commands to control the motor."
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -23,7 +26,10 @@
       },
       "package": "com.arduinocontroller.app",
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"

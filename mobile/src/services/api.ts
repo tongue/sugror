@@ -2,8 +2,8 @@ import { DeviceState, MotorControlRequest, LedControlRequest } from '../types';
 
 // Configuration
 // For iOS Simulator, use localhost
-// For physical device, use your Mac's IP address (e.g., '192.168.1.100')
-const API_BASE_URL = 'http://localhost:3000';
+// For physical device, use your Mac's IP address
+const API_BASE_URL = 'http://100.66.14.186:3000';
 
 class ApiService {
   private baseUrl: string;
@@ -152,6 +152,52 @@ class ApiService {
       return response.ok;
     } catch (error) {
       return false;
+    }
+  }
+
+  /**
+   * Transcribe audio file using backend Whisper model
+   */
+  async transcribeAudio(audioUri: string): Promise<{ success: boolean; transcript?: string; command?: 'on' | 'off'; error?: string }> {
+    try {
+      console.log('Transcribing audio from URI:', audioUri);
+      
+      const formData = new FormData();
+      
+      // For React Native, we need to pass the file differently
+      const fileUri = audioUri.startsWith('file://') ? audioUri : `file://${audioUri}`;
+      
+      formData.append('audio', {
+        uri: fileUri,
+        type: 'audio/x-m4a',
+        name: 'recording.m4a',
+      } as any);
+
+      console.log('Uploading audio to backend...');
+
+      const uploadResponse = await fetch(`${this.baseUrl}/api/speech`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        body: formData,
+      });
+
+      if (!uploadResponse.ok) {
+        const errorText = await uploadResponse.text();
+        console.error('Upload failed:', uploadResponse.status, errorText);
+        throw new Error(`HTTP error! status: ${uploadResponse.status}`);
+      }
+
+      const result = await uploadResponse.json();
+      console.log('Transcription result:', result);
+      return result;
+    } catch (error) {
+      console.error('Error transcribing audio:', error);
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Unknown error'
+      };
     }
   }
 }
