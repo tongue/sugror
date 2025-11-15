@@ -121,12 +121,12 @@ const VoiceControl: React.FC<VoiceControlProps> = ({
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>Voice Control</Text>
-        {(loading || isProcessing) && <ActivityIndicator size="small" color="#2196F3" />}
+        <Text style={styles.title}>✨ Voice Control ✨</Text>
+        {(loading || isProcessing) && <ActivityIndicator size="small" color="#8b5cf6" />}
       </View>
 
       <Text style={styles.instructions}>
-        Hold button and say "drinker on" or "drinker off"
+        ✨ Hold button and say "drinker on" or "drinker off" ✨
       </Text>
 
       <TouchableOpacity
@@ -146,18 +146,18 @@ const VoiceControl: React.FC<VoiceControlProps> = ({
               <View style={styles.listeningIndicator}>
                 <View style={styles.pulse} />
               </View>
-              <Text style={styles.buttonText}>Listening...</Text>
+              <Text style={styles.buttonText}>🔥 LISTENING 🔥</Text>
             </>
           ) : isProcessing ? (
             <>
-              <ActivityIndicator size="large" color="#fff" />
-              <Text style={styles.buttonText}>Processing...</Text>
+              <ActivityIndicator size="large" color="#fbbf24" />
+              <Text style={styles.buttonText}>✨ PROCESSING ✨</Text>
             </>
           ) : (
             <>
               <Text style={styles.micIcon}>🎤</Text>
               <Text style={styles.buttonText}>
-                {disabled ? 'Not Connected' : 'Hold to Speak'}
+                {disabled ? '❌ NOT CONNECTED' : 'DRINKR'}
               </Text>
             </>
           )}
@@ -182,107 +182,142 @@ const VoiceControl: React.FC<VoiceControlProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    padding: 20,
+    backgroundColor: '#0a0e27',
+    borderRadius: 24,
+    padding: 24,
     marginBottom: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    shadowColor: '#6366f1',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.4,
+    shadowRadius: 16,
+    elevation: 8,
+    borderWidth: 2,
+    borderColor: '#1e1b4b',
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: 16,
   },
   title: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#fff',
+    textShadowColor: '#8b5cf6',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 10,
   },
   instructions: {
-    fontSize: 14,
-    color: '#666',
-    marginBottom: 16,
+    fontSize: 16,
+    color: '#a5b4fc',
+    marginBottom: 24,
     textAlign: 'center',
+    fontWeight: '500',
   },
   button: {
-    backgroundColor: '#2196F3',
-    borderRadius: 12,
-    padding: 20,
+    backgroundColor: '#4c1d95',
+    borderRadius: 100,
+    padding: 32,
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: 100,
+    minHeight: 224,
+    minWidth: 224,
+    alignSelf: 'center',
+    shadowColor: '#8b5cf6',
+    shadowOffset: { width: 0, height: 12 },
+    shadowOpacity: 0.6,
+    shadowRadius: 24,
+    elevation: 12,
+    borderWidth: 4,
+    borderColor: '#6366f1',
   },
   buttonListening: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#dc2626',
+    borderColor: '#fbbf24',
+    shadowColor: '#f59e0b',
+    shadowOpacity: 0.9,
+    shadowRadius: 32,
   },
   buttonDisabled: {
-    backgroundColor: '#ccc',
-    opacity: 0.6,
+    backgroundColor: '#1e293b',
+    borderColor: '#334155',
+    opacity: 0.5,
+    shadowOpacity: 0.2,
   },
   buttonContent: {
     alignItems: 'center',
     justifyContent: 'center',
   },
   micIcon: {
-    fontSize: 40,
-    marginBottom: 8,
+    fontSize: 80,
+    marginBottom: 12,
+    textShadowColor: '#fff',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 20,
   },
   buttonText: {
     color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
-    marginTop: 8,
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginTop: 12,
+    textShadowColor: 'rgba(0, 0, 0, 0.5)',
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 4,
+    letterSpacing: 1,
   },
   listeningIndicator: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: 'rgba(251, 191, 36, 0.3)',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 8,
+    marginBottom: 12,
+    borderWidth: 3,
+    borderColor: '#fbbf24',
   },
   pulse: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 70,
+    height: 70,
+    borderRadius: 35,
     backgroundColor: '#fff',
+    shadowColor: '#fbbf24',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 1,
+    shadowRadius: 20,
   },
   resultContainer: {
-    marginTop: 16,
-    padding: 12,
-    backgroundColor: '#f0f9ff',
-    borderRadius: 8,
-    borderLeftWidth: 4,
-    borderLeftColor: '#2196F3',
+    marginTop: 20,
+    padding: 16,
+    backgroundColor: 'rgba(99, 102, 241, 0.2)',
+    borderRadius: 16,
+    borderWidth: 2,
+    borderColor: '#6366f1',
   },
   resultLabel: {
     fontSize: 12,
-    color: '#666',
-    marginBottom: 4,
+    color: '#a5b4fc',
+    marginBottom: 6,
+    fontWeight: '600',
   },
   resultText: {
-    fontSize: 16,
-    color: '#333',
-    fontWeight: '500',
+    fontSize: 18,
+    color: '#fff',
+    fontWeight: 'bold',
   },
   errorContainer: {
-    marginTop: 16,
-    padding: 12,
-    backgroundColor: '#fff3f3',
-    borderRadius: 8,
-    borderLeftWidth: 4,
-    borderLeftColor: '#f44336',
+    marginTop: 20,
+    padding: 16,
+    backgroundColor: 'rgba(239, 68, 68, 0.2)',
+    borderRadius: 16,
+    borderWidth: 2,
+    borderColor: '#ef4444',
   },
   errorText: {
-    fontSize: 14,
-    color: '#d32f2f',
-    fontWeight: '500',
+    fontSize: 16,
+    color: '#fca5a5',
+    fontWeight: 'bold',
   },
 });
 
