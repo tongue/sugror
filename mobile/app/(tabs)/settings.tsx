@@ -20,7 +20,7 @@ export default function SettingsScreen() {
         contentContainerStyle={styles.scrollContent}
       >
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>⚙️ Settings</Text>
+          <Text style={styles.headerTitle}>Settings</Text>
           <Text style={styles.headerSubtitle}>Manage your device controls</Text>
         </View>
 
@@ -45,7 +45,7 @@ export default function SettingsScreen() {
           onPress={() => router.push('/onboarding')}
           activeOpacity={0.8}
         >
-          <Text style={styles.onboardingButtonText}>✨ Edit Profile</Text>
+          <Text style={styles.onboardingButtonText}>Edit Profile</Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>

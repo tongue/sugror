@@ -12,7 +12,7 @@ export default function VoiceScreen() {
       <StatusBar style="light" />
       <View style={styles.content}>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>✨ DRINKR 🚀</Text>
+          <Text style={styles.headerTitle}>DRINKR</Text>
           <Text style={styles.headerSubtitle}>Voice control for your drinker</Text>
         </View>
 
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     borderBottomWidth: 2,
     borderBottomColor: '#1e1b4b',
+    alignItems: 'center',
   },
   headerTitle: {
     fontSize: 32,
@@ -50,11 +51,13 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 0, height: 0 },
     textShadowRadius: 15,
     letterSpacing: 2,
+    textAlign: 'center',
   },
   headerSubtitle: {
     fontSize: 16,
     color: '#a5b4fc',
     fontWeight: '500',
+    textAlign: 'center',
   },
 });
 

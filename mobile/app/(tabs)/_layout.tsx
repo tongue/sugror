@@ -114,7 +114,7 @@ export default function TabsLayout() {
           options={{
             title: 'Voice',
             tabBarIcon: ({ color, size }) => (
-              <Text style={{ fontSize: size }}>🎤</Text>
+              <Text style={{ fontSize: size }}>🥤</Text>
             ),
           }}
         />

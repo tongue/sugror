@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -15,6 +15,15 @@ interface VoiceControlProps {
   loading?: boolean;
 }
 
+const PROCESSING_MESSAGES = [
+  'Contacting hydration expert...',
+  'Calculating optimal hydration flow...',
+  'Setting optimal hydration flow...',
+  'Loading hydration agent...',
+  'Drowning hydration agent...',
+  'DRINKR ping pong checkup...',
+];
+
 const VoiceControl: React.FC<VoiceControlProps> = ({
   onMotorToggle,
   disabled = false,
@@ -25,6 +34,23 @@ const VoiceControl: React.FC<VoiceControlProps> = ({
   const [recognizedText, setRecognizedText] = useState('');
   const [error, setError] = useState('');
   const [recording, setRecording] = useState<Audio.Recording | null>(null);
+  const [processingMessageIndex, setProcessingMessageIndex] = useState(0);
+
+  // Cycle through processing messages
+  useEffect(() => {
+    if (!isProcessing) {
+      setProcessingMessageIndex(0);
+      return;
+    }
+
+    const interval = setInterval(() => {
+      setProcessingMessageIndex((prevIndex) => 
+        (prevIndex + 1) % PROCESSING_MESSAGES.length
+      );
+    }, 2000); // Change message every 2 seconds
+
+    return () => clearInterval(interval);
+  }, [isProcessing]);
 
   const startListening = async () => {
     try {
@@ -121,12 +147,12 @@ const VoiceControl: React.FC<VoiceControlProps> = ({
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>✨ Voice Control ✨</Text>
+        <Text style={styles.title}>Voice Control</Text>
         {(loading || isProcessing) && <ActivityIndicator size="small" color="#8b5cf6" />}
       </View>
 
       <Text style={styles.instructions}>
-        ✨ Hold button and say "drinker on" or "drinker off" ✨
+        Hold button and say "drinker on" or "drinker off"
       </Text>
 
       <TouchableOpacity
@@ -146,18 +172,18 @@ const VoiceControl: React.FC<VoiceControlProps> = ({
               <View style={styles.listeningIndicator}>
                 <View style={styles.pulse} />
               </View>
-              <Text style={styles.buttonText}>🔥 LISTENING 🔥</Text>
+              <Text style={styles.buttonText}>LISTENING</Text>
             </>
           ) : isProcessing ? (
             <>
               <ActivityIndicator size="large" color="#fbbf24" />
-              <Text style={styles.buttonText}>✨ PROCESSING ✨</Text>
+              <Text style={styles.buttonText}>{PROCESSING_MESSAGES[processingMessageIndex]}</Text>
             </>
           ) : (
             <>
-              <Text style={styles.micIcon}>🎤</Text>
+              <Text style={styles.micIcon}>🥤</Text>
               <Text style={styles.buttonText}>
-                {disabled ? '❌ NOT CONNECTED' : 'DRINKR'}
+                {disabled ? 'NOT CONNECTED' : 'DRINKR'}
               </Text>
             </>
           )}
@@ -196,7 +222,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
   },
@@ -207,6 +233,7 @@ const styles = StyleSheet.create({
     textShadowColor: '#8b5cf6',
     textShadowOffset: { width: 0, height: 0 },
     textShadowRadius: 10,
+    textAlign: 'center',
   },
   instructions: {
     fontSize: 16,
@@ -258,13 +285,15 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: '#fff',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
     marginTop: 12,
     textShadowColor: 'rgba(0, 0, 0, 0.5)',
     textShadowOffset: { width: 0, height: 2 },
     textShadowRadius: 4,
-    letterSpacing: 1,
+    letterSpacing: 0.5,
+    textAlign: 'center',
+    paddingHorizontal: 20,
   },
   listeningIndicator: {
     width: 100,

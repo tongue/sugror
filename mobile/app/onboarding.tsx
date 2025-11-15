@@ -9,6 +9,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useRouter } from 'expo-router';
@@ -64,7 +65,7 @@ export default function OnboardingScreen() {
       <SafeAreaView style={styles.container}>
         <StatusBar style="light" />
         <View style={[styles.content, { justifyContent: 'center', alignItems: 'center' }]}>
-          <Text style={styles.emoji}>✨</Text>
+          <ActivityIndicator size="large" color="#8b5cf6" />
         </View>
       </SafeAreaView>
     );
@@ -79,7 +80,6 @@ export default function OnboardingScreen() {
       >
         <View style={styles.content}>
           <View style={styles.header}>
-            <Text style={styles.emoji}>✨🚀✨</Text>
             <Text style={styles.title}>Welcome to DRINKR</Text>
             <Text style={styles.subtitle}>Let's get you set up</Text>
           </View>
@@ -106,14 +106,14 @@ export default function OnboardingScreen() {
               activeOpacity={0.8}
             >
               <Text style={styles.buttonText}>
-                {isSubmitting ? '✨ SAVING...' : '🔥 GET STARTED 🔥'}
+                {isSubmitting ? 'SAVING...' : 'GET STARTED'}
               </Text>
             </TouchableOpacity>
           </View>
 
           <View style={styles.footer}>
             <Text style={styles.footerText}>
-              Your information is stored securely on your device
+              Your information is stored securely (publicly) in the WIKILEAKS Cloud.
             </Text>
           </View>
         </View>
@@ -139,10 +139,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 48,
   },
-  emoji: {
-    fontSize: 48,
-    marginBottom: 16,
-  },
   title: {
     fontSize: 36,
     fontWeight: 'bold',
@@ -152,11 +148,13 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 0, height: 0 },
     textShadowRadius: 20,
     letterSpacing: 2,
+    textAlign: 'center',
   },
   subtitle: {
     fontSize: 18,
     color: '#a5b4fc',
     fontWeight: '500',
+    textAlign: 'center',
   },
   formContainer: {
     marginBottom: 32,
