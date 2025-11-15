@@ -7,7 +7,7 @@ const http = require('http');
 
 // Configuration
 const PORT = 3000;
-const SERIAL_PORT = '/dev/cu.usbmodem14101'; // UPDATE THIS with your Arduino port
+const SERIAL_PORT = '/dev/cu.usbmodem101'; 
 const BAUD_RATE = 9600;
 
 // Application state

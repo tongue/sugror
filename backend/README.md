@@ -35,6 +35,22 @@ npm run dev
 
 Server runs on `http://localhost:3000`
 
+## Code Quality
+
+### Linting
+
+Run ESLint to check for code issues:
+```bash
+npm run lint
+```
+
+Auto-fix linting issues:
+```bash
+npm run lint:fix
+```
+
+ESLint is configured with default recommended rules in `.eslintrc.json`.
+
 ## API Endpoints
 
 ### POST /api/motor
