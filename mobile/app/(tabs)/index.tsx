@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import VoiceControl from '../src/components/VoiceControl';
+import VoiceControl from '../../src/components/VoiceControl';
 import { AppContext } from './_layout';
 
 export default function VoiceScreen() {

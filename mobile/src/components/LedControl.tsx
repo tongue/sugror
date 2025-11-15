@@ -72,15 +72,17 @@ const LedControl: React.FC<LedControlProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
-    borderRadius: 12,
+    backgroundColor: '#0a0e27',
+    borderRadius: 16,
     padding: 20,
     marginBottom: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    shadowColor: '#6366f1',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 4,
+    borderWidth: 2,
+    borderColor: '#1e1b4b',
   },
   header: {
     flexDirection: 'row',
@@ -91,48 +93,58 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#fff',
+    textShadowColor: '#8b5cf6',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 8,
   },
   statusRow: {
     marginBottom: 16,
   },
   label: {
     fontSize: 16,
-    color: '#666',
+    color: '#a5b4fc',
+    fontWeight: '600',
   },
   statusOn: {
     color: '#FF9800',
     fontWeight: 'bold',
+    textShadowColor: '#FF9800',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 6,
   },
   statusOff: {
-    color: '#999',
+    color: '#64748b',
     fontWeight: 'bold',
   },
   buttonRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 20,
   },
   button: {
     flex: 1,
-    paddingVertical: 12,
+    paddingVertical: 14,
     paddingHorizontal: 24,
-    borderRadius: 8,
+    borderRadius: 12,
     alignItems: 'center',
     marginHorizontal: 4,
     borderWidth: 2,
   },
   buttonOn: {
-    backgroundColor: '#fff',
+    backgroundColor: '#1e1b4b',
     borderColor: '#FF9800',
   },
   buttonOff: {
-    backgroundColor: '#fff',
-    borderColor: '#999',
+    backgroundColor: '#1e1b4b',
+    borderColor: '#64748b',
   },
   buttonActive: {
     backgroundColor: '#FF9800',
     borderColor: '#FF9800',
+    shadowColor: '#FF9800',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.6,
+    shadowRadius: 8,
   },
   buttonDisabled: {
     opacity: 0.5,
@@ -140,7 +152,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#666',
+    color: '#a5b4fc',
   },
   buttonTextActive: {
     color: '#fff',

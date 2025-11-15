@@ -45,15 +45,17 @@ const MotorControl: React.FC<MotorControlProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
-    borderRadius: 12,
+    backgroundColor: '#0a0e27',
+    borderRadius: 16,
     padding: 20,
     marginBottom: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    shadowColor: '#6366f1',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 4,
+    borderWidth: 2,
+    borderColor: '#1e1b4b',
   },
   header: {
     flexDirection: 'row',
@@ -64,7 +66,10 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#fff',
+    textShadowColor: '#8b5cf6',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 8,
   },
   controlRow: {
     flexDirection: 'row',
@@ -73,14 +78,18 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
-    color: '#666',
+    color: '#a5b4fc',
+    fontWeight: '600',
   },
   statusOn: {
     color: '#4CAF50',
     fontWeight: 'bold',
+    textShadowColor: '#4CAF50',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 6,
   },
   statusOff: {
-    color: '#999',
+    color: '#64748b',
     fontWeight: 'bold',
   },
 });
