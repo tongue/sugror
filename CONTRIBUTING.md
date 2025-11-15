@@ -227,11 +227,12 @@ const handleServoChange = async (angle: number) => {
 3. Check serial communication with Arduino
 
 ### Testing Mobile App
-1. Test on iOS Simulator
-2. Test on physical device
-3. Test with backend disconnected
-4. Test with Arduino disconnected
-5. Verify error handling
+1. Test on iOS Simulator (`npm run ios`)
+2. Test on physical device (via Expo Go app)
+3. Test on Android (`npm run android`)
+4. Test with backend disconnected
+5. Test with Arduino disconnected
+6. Verify error handling
 
 ## Documentation
 

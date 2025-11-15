@@ -10,18 +10,17 @@ React Native (iOS) <-> HTTP/WebSocket <-> Node.js Server <-> USB Serial <-> Ardu
 
 ## Project Structure
 
-- `mobile/` - React Native iOS application
+- `mobile/` - Expo (React Native) mobile application for iOS/Android
 - `backend/` - Node.js Express server for Arduino communication
 - `arduino/` - Arduino firmware (.ino sketch)
 
 ## Prerequisites
 
-- **macOS** (for iOS development)
 - **Node.js** (v18 or higher recommended)
-- **Xcode** (latest version with iOS SDK)
 - **Arduino IDE** (for uploading firmware)
 - **Arduino Uno R4 Minima** board
 - **USB cable** to connect Arduino to your Mac
+- **Expo Go app** (for testing on physical device) or iOS Simulator/Android Emulator
 
 ## Quick Start
 
@@ -51,13 +50,14 @@ The server will start on `http://localhost:3000`
 ```bash
 cd mobile
 npm install
-cd ios
-pod install
-cd ..
-npm run ios
+npm start
 ```
 
-**Configure Backend URL:** If running on a physical device, edit `mobile/src/services/api.ts` and update the `API_BASE_URL` with your Mac's local IP address.
+Then:
+- Press `i` to open iOS Simulator, or
+- Scan QR code with Expo Go app on your phone
+
+**Configure Backend URL:** If running on a physical device, edit `mobile/src/services/api.ts` and update the `API_BASE_URL` with your Mac's local IP address (e.g., `http://192.168.1.100:3000`).
 
 ## Hardware Setup
 

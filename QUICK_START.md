@@ -6,12 +6,12 @@ Get your Arduino control app up and running in minutes!
 
 Before starting, ensure you have:
 
-- [ ] macOS computer
+- [ ] Computer (macOS, Windows, or Linux)
 - [ ] Arduino Uno R4 Minima board
 - [ ] USB cable (data-capable)
 - [ ] Node.js installed (v18+)
-- [ ] Xcode installed
 - [ ] Arduino IDE installed
+- [ ] Expo Go app (for physical device testing) or iOS Simulator/Android Emulator
 - [ ] LED + 220Ω resistor
 - [ ] Relay module (for motor control)
 
@@ -77,31 +77,26 @@ Serial port /dev/cu.usbmodem14101 opened successfully
 
 **Test it**: Open browser to http://localhost:3000/api/status
 
-### Step 4: Setup Mobile App (5 minutes)
+### Step 4: Setup Mobile App (3 minutes)
 
 ```bash
 cd mobile
 npm install
-cd ios
-pod install
-cd ..
+npm start
 ```
 
-**For Physical iPhone**: 
-Edit `mobile/src/services/api.ts` line 8:
-```typescript
-const API_BASE_URL = 'http://192.168.1.100:3000'; // Use your Mac's IP
-```
+**For iOS Simulator:**
+- Press `i` in the terminal to open iOS simulator
 
-Find your Mac's IP:
-```bash
-ipconfig getifaddr en0
-```
-
-Launch the app:
-```bash
-npm run ios
-```
+**For Physical iPhone:**
+1. Install **Expo Go** from the App Store
+2. Edit `mobile/src/services/api.ts` line 8:
+   ```typescript
+   const API_BASE_URL = 'http://192.168.1.100:3000'; // Use your Mac's IP
+   ```
+3. Find your Mac's IP: `ipconfig getifaddr en0`
+4. Scan the QR code shown in terminal with your iPhone camera
+5. App will open in Expo Go
 
 ### Step 5: Test Everything! (1 minute)
 
@@ -154,12 +149,12 @@ npm run ios
 
 ### Running on Physical iPhone
 
-1. Get your Mac's IP: `ipconfig getifaddr en0`
-2. Update `mobile/src/services/api.ts` with IP
-3. Open Xcode: `open mobile/ios/ArduinoController.xcworkspace`
-4. Select your device
-5. Update signing team
-6. Run (⌘R)
+1. Install Expo Go from App Store
+2. Get your Mac's IP: `ipconfig getifaddr en0`
+3. Update `mobile/src/services/api.ts` with IP
+4. Run `npm start` in mobile folder
+5. Scan QR code with iPhone camera
+6. App opens in Expo Go
 
 ### Multiple Devices
 
@@ -205,8 +200,8 @@ Check these files:
 3. **Mobile changes**:
    ```bash
    cd mobile
-   npm start    # Metro bundler with hot reload
-   # Shake device or Cmd+D → Enable Hot Reloading
+   npm start    # Expo development server with hot reload
+   # Shake device or press 'm' in terminal to open menu
    ```
 
 ## Success Checklist
