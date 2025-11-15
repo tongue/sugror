@@ -27,7 +27,7 @@
  */
 
 // Uncomment the line below to enable debug output
-#define DEBUG
+// #define DEBUG
 
 // Pin definitions
 const int MOTOR_PIN = 7;   // Digital pin for motor control
