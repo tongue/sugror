@@ -1,15 +1,42 @@
 import React, { useContext } from 'react';
-import { View, Text, StyleSheet, ScrollView, SafeAreaView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, SafeAreaView, TouchableOpacity, Alert } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useRouter } from 'expo-router';
 import StatusIndicator from '../../src/components/StatusIndicator';
 import MotorControl from '../../src/components/MotorControl';
 import LedControl from '../../src/components/LedControl';
 import { AppContext } from './_layout';
+import { StorageService } from '../../src/services/storage';
 
 export default function SettingsScreen() {
   const { deviceState, loading, handleMotorToggle, handleLedToggle } = useContext(AppContext);
   const router = useRouter();
+
+  const handleResetOnboarding = () => {
+    Alert.alert(
+      'Reset Onboarding',
+      'This will clear all your onboarding data and restart the setup process. This is useful for demo purposes. Continue?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Reset',
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              await StorageService.clearAll();
+              router.replace('/onboarding');
+            } catch (error) {
+              console.error('Error resetting onboarding:', error);
+              Alert.alert('Error', 'Failed to reset onboarding. Please try again.');
+            }
+          },
+        },
+      ]
+    );
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -46,6 +73,14 @@ export default function SettingsScreen() {
           activeOpacity={0.8}
         >
           <Text style={styles.onboardingButtonText}>Edit Profile</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.resetButton}
+          onPress={handleResetOnboarding}
+          activeOpacity={0.8}
+        >
+          <Text style={styles.resetButtonText}>Reset Onboarding (Demo)</Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
@@ -99,6 +134,25 @@ const styles = StyleSheet.create({
   },
   onboardingButtonText: {
     color: '#a5b4fc',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  resetButton: {
+    backgroundColor: '#4c0519',
+    borderRadius: 16,
+    padding: 18,
+    alignItems: 'center',
+    marginTop: 12,
+    borderWidth: 2,
+    borderColor: '#dc2626',
+    shadowColor: '#ef4444',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  resetButtonText: {
+    color: '#fca5a5',
     fontSize: 16,
     fontWeight: 'bold',
   },

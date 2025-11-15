@@ -2,6 +2,26 @@ import * as SecureStore from 'expo-secure-store';
 
 const ONBOARDING_KEY = 'onboarding_complete';
 const USER_NAME_KEY = 'user_name';
+const ONBOARDING_DATA_KEY = 'onboarding_data';
+
+export interface OnboardingData {
+  ageRange: string;
+  homeAddress: string;
+  hydrationReminders: string;
+  dailyHydrationGoal: string;
+  bottleGripStyle: string;
+  mouthSizePreference: string;
+  batteryUsagePriority: string;
+  socialSharingPreference: string;
+  peeingEnjoyment: string;
+  numberOfSiblings: string;
+  bitcoinWallet: string;
+  idealPocketNumber: string;
+  favoriteCloudShape: string;
+  privacySettings: string;
+  acceptGod: string;
+  name: string;
+}
 
 export const StorageService = {
   // Check if onboarding is complete
@@ -43,11 +63,34 @@ export const StorageService = {
     }
   },
 
+  // Save full onboarding data
+  async setOnboardingData(data: OnboardingData): Promise<void> {
+    try {
+      await SecureStore.setItemAsync(ONBOARDING_DATA_KEY, JSON.stringify(data));
+      await this.setUserName(data.name);
+    } catch (error) {
+      console.error('Error saving onboarding data:', error);
+      throw error;
+    }
+  },
+
+  // Get full onboarding data
+  async getOnboardingData(): Promise<OnboardingData | null> {
+    try {
+      const data = await SecureStore.getItemAsync(ONBOARDING_DATA_KEY);
+      return data ? JSON.parse(data) : null;
+    } catch (error) {
+      console.error('Error getting onboarding data:', error);
+      return null;
+    }
+  },
+
   // Clear all data (for testing or reset)
   async clearAll(): Promise<void> {
     try {
       await SecureStore.deleteItemAsync(ONBOARDING_KEY);
       await SecureStore.deleteItemAsync(USER_NAME_KEY);
+      await SecureStore.deleteItemAsync(ONBOARDING_DATA_KEY);
     } catch (error) {
       console.error('Error clearing storage:', error);
     }
