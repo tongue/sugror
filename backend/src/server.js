@@ -14,7 +14,6 @@ const BAUD_RATE = 9600;
 let deviceState = {
   motor: 'off',
   led: 'off',
-  ledBrightness: 0,
   connected: false
 };
 
@@ -126,10 +125,6 @@ function handleArduinoResponse(response) {
       deviceState.led = 'on';
     } else if (command === 'LED_OFF') {
       deviceState.led = 'off';
-    } else if (command.startsWith('LED_BRIGHTNESS:')) {
-      const brightness = parseInt(command.split(':')[1]);
-      deviceState.ledBrightness = brightness;
-      deviceState.led = brightness > 0 ? 'on' : 'off';
     }
     
     broadcastState();
@@ -202,7 +197,7 @@ app.post('/api/motor', async (req, res) => {
 
 // Control LED
 app.post('/api/led', async (req, res) => {
-  const { state, brightness } = req.body;
+  const { state } = req.body;
 
   if (!state || !['on', 'off'].includes(state)) {
     return res.status(400).json({
@@ -212,23 +207,12 @@ app.post('/api/led', async (req, res) => {
   }
 
   try {
-    let command;
-    
-    if (state === 'off') {
-      command = 'LED_OFF';
-    } else if (brightness !== undefined) {
-      const brightnessValue = Math.max(0, Math.min(255, parseInt(brightness)));
-      command = `LED_BRIGHTNESS:${brightnessValue}`;
-    } else {
-      command = 'LED_ON';
-    }
-    
+    const command = state === 'on' ? 'LED_ON' : 'LED_OFF';
     await sendCommand(command);
     
     res.json({
       success: true,
-      state: state,
-      brightness: brightness !== undefined ? parseInt(brightness) : 255
+      state: state
     });
   } catch (error) {
     res.status(500).json({

@@ -35,7 +35,7 @@ GND --> LED Cathode (-, shorter leg)
                     Arduino Uno R4 Minima
                 ┌─────────────────────────┐
                 │                         │
-                │                    Pin9 ├────────────┐
+                │                    Pin7 ├────────────┐
                 │                     5V  ├──────┐     │
                 │                     GND ├────┐ │     │
                 │                         │    │ │     │
@@ -62,7 +62,7 @@ GND --> LED Cathode (-, shorter leg)
                 └───────┘ │    -    │
                           └─────────┘
 
-Arduino Pin 9  --> Relay IN
+Arduino Pin 7  --> Relay IN
 Arduino 5V     --> Relay VCC
 Arduino GND    --> Relay GND
 Motor Lead 1   --> Relay COM
@@ -77,7 +77,7 @@ Power (-)      --> Motor circuit (through relay)
                     Arduino Uno R4 Minima
                 ┌─────────────────────────┐
                 │                         │
-                │                    Pin9 ├────────────┐
+                │                    Pin7 ├────────────┐
                 │                     GND ├──────────┐ │
                 │                         │          │ │
                 └─────────────────────────┘          │ │
@@ -109,7 +109,7 @@ Power (-)      --> Motor circuit (through relay)
                     │     - ─────────────┤
                     └────────────────────┘
 
-Arduino Pin 9  --> L298N IN1
+Arduino Pin 7  --> L298N IN1
 Arduino GND    --> L298N GND
 Motor (+)      --> L298N OUT1
 Motor (-)      --> L298N OUT2
@@ -123,7 +123,7 @@ Battery (-)    --> L298N GND
                         Arduino Uno R4 Minima
                     ┌─────────────────────────┐
                     │                         │
-                    │                    Pin9 ├─────► To Relay IN
+                    │                    Pin7 ├─────► To Relay IN
                     │                   Pin10 ├─────► To LED (via resistor)
                     │                     5V  ├─────► To Relay VCC
                     │                     GND ├─┬───► To Relay GND
